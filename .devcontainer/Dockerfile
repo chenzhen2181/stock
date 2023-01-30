@@ -5,7 +5,7 @@
 
 FROM mcr.microsoft.com/devcontainers/universal:2-linux
 
-WORKDIR /data
+WORKDIR ../datanew
 
 
 
