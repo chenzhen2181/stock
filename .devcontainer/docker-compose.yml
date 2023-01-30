@@ -1,6 +1,19 @@
 
 version: "3"
 services:
+    app:
+        build:
+          context: ..
+          dockerfile: .devcontainer/Dockerfile
+
+        volumes:
+          - ../..:/workspaces:cached
+
+        # Overrides default command so things don't shut down after the process ends.
+        command: sleep infinity
+
+        # Runs app on the same network as the database container, allows "forwardPorts" in devcontainer.json function.
+        network_mode: service:mysqldb
     
     stock:
         image: pythonstock/pythonstock:latest
@@ -28,7 +41,7 @@ services:
         ports:
             - "3306:3306"
         volumes:
-            - "./data/mysqldb/data:/var/lib/mysql"
+            - mysql-data:/var/lib/mysql
         environment:
             MYSQL_ROOT_PASSWORD: mysqldb
             MYSQL_DATABASE: stock_data
@@ -39,4 +52,7 @@ services:
             '--max_connections=3000'
         ]
         restart: always
+
+volumes:
+  mysql-data:
         
