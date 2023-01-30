@@ -1,6 +1,7 @@
 
 version: "3"
 services:
+    
     stock:
         image: pythonstock/pythonstock:latest
         container_name: stock
