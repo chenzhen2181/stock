@@ -2,8 +2,8 @@
 	"name": "Python 3 & MYSQL",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
-	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
-
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"forwardPorts": [3306, 8888, 9999]
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
