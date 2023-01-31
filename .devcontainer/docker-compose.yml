@@ -41,3 +41,5 @@ services:
             '--max_connections=3000'
         ]
         restart: always
+     # ... 在dev container 里面安装docker 。
+     # 命令： docker-compose up -d 
