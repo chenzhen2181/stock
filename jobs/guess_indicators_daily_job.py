@@ -1,6 +1,7 @@
 #!/usr/local/bin/python3
 # -*- coding: utf-8 -*-
-
+import sys
+sys.path.append('/workspaces/stock')
 
 import libs.common as common
 import pandas as pd
@@ -8,7 +9,7 @@ import numpy as np
 import math
 import datetime
 import stockstats
-
+import datetime as dt
 
 ### 对每日指标数据，进行筛选。将符合条件的。二次筛选出来。
 ### 只是做简单筛选
@@ -78,6 +79,7 @@ def stat_all_lite_sell(tmp_datetime):
 
     try:
         common.insert_db(data, "guess_indicators_lite_sell_daily", False, "`date`,`code`")
+        
     except Exception as e:
         print("error :", e)
 

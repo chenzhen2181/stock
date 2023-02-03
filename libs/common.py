@@ -17,7 +17,7 @@ import traceback
 import akshare as ak
 
 # 使用环境变量获得数据库。兼容开发模式可docker模式。
-MYSQL_HOST = os.environ.get('MYSQL_HOST') if (os.environ.get('MYSQL_HOST') != None) else "mysqldb"
+MYSQL_HOST = "localhost" #### 使用MySQLdb模块时host改为127.0.0.1；PyMySQL没有此类问题，host=localhost
 MYSQL_USER = os.environ.get('MYSQL_USER') if (os.environ.get('MYSQL_USER') != None) else "root"
 MYSQL_PWD = os.environ.get('MYSQL_PWD') if (os.environ.get('MYSQL_PWD') != None) else "mysqldb"
 MYSQL_DB = os.environ.get('MYSQL_DB') if (os.environ.get('MYSQL_DB') != None) else "stock_data"
@@ -45,7 +45,7 @@ def engine_to_db(to_db):
 # 通过数据库链接 engine。
 def conn():
     try:
-        db = MySQLdb.connect(MYSQL_HOST, MYSQL_USER, MYSQL_PWD, MYSQL_DB, charset="utf8")
+        db = MySQLdb.connect("127.0.0.1", MYSQL_USER, MYSQL_PWD, MYSQL_DB, charset="utf8")
         # db.autocommit = True
     except Exception as e:
         print("conn error :", e)
@@ -178,9 +178,7 @@ def run_with_args(run_fun):
 
 # 设置基础目录，每次加载使用。
 bash_stock_tmp = "/data/cache/hist_data_cache/%s/%s/"
-if not os.path.exists(bash_stock_tmp):
-    os.makedirs(bash_stock_tmp)  # 创建多个文件夹结构。
-    print("######################### init tmp dir #########################")
+
 
 
 # 增加读取股票缓存方法。加快处理速度。

@@ -24,6 +24,6 @@ printenv | grep -v "no_proxy" >> /etc/environment
 
 # 第一次后台执行日数据。
 nohup bash /data/stock/jobs/cron.daily/run_daily &
-
+/usr/local/bin/python3 /data/stock/jobs/output_data_stockdocker.py  >> /data/logs/output.log
 #启动cron服务。在前台
 /usr/sbin/cron -f
